@@ -103,7 +103,7 @@ class ViewController: UIViewController {
         let popsicleImageView = UIImageView()
         popsicleImageView.heightAnchor.constraint(equalToConstant: heighConstant).isActive = true
         popsicleImageView.widthAnchor.constraint(equalToConstant: widthConstant).isActive = true
-        popsicleImageView.image = UIImage(named: "popsicle")
+        popsicleImageView.image = UIImage(named: "pizza_pockets")
         
         stackView.addArrangedSubview(popsicleImageView)
         
@@ -115,6 +115,17 @@ class ViewController: UIViewController {
         
         stackView.addArrangedSubview(ramenImageView)
         
+        //Snacks label
+        let snacksLabel = UILabel()
+        snacksLabel.translatesAutoresizingMaskIntoConstraints = false
+        snacksLabel.text = "SNACKS"
+        snacksLabel.textAlignment = .center
+        
+        navigationBar.addSubview(snacksLabel)
+        
+        snacksLabel.centerXAnchor.constraint(equalTo: navigationBar.centerXAnchor).isActive = true
+        snacksLabel.centerYAnchor.constraint(equalTo: navigationBar.centerYAnchor).isActive = true
+        
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         self.navigationBar.addSubview(stackView)
@@ -123,6 +134,7 @@ class ViewController: UIViewController {
         stackView.heightAnchor.constraint(equalToConstant: 140).isActive = true
         stackView.leadingAnchor.constraint(equalTo: self.navigationBar.leadingAnchor, constant: 10).isActive = true
         stackView.trailingAnchor.constraint(equalTo: self.navigationBar.trailingAnchor, constant: -10).isActive = true
+        
     }
-
+    
 }
