@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupStackView()
+        stackView.isHidden = true
     }
 
     //MARK: Actions
@@ -71,29 +72,48 @@ class ViewController: UIViewController {
         stackView.alignment = UIStackViewAlignment.center
         stackView.spacing   = 8.0
         
+        let heighConstant = 100.0 as CGFloat
+        let widthConstant = 70.0 as CGFloat
+        
         //Oreo Image View
         let oreoImageView = UIImageView()
-        oreoImageView.heightAnchor.constraint(equalToConstant: 120.0).isActive = true
-        oreoImageView.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
+        oreoImageView.heightAnchor.constraint(equalToConstant: heighConstant).isActive = true
+        oreoImageView.widthAnchor.constraint(equalToConstant: widthConstant).isActive = true
         oreoImageView.image = UIImage(named: "oreos")
         
         stackView.addArrangedSubview(oreoImageView)
         
         //Pizza_pockets Image View
         let pizza_pocketsImageView = UIImageView()
-        pizza_pocketsImageView.heightAnchor.constraint(equalToConstant: 120.0).isActive = true
-        pizza_pocketsImageView.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
+        pizza_pocketsImageView.heightAnchor.constraint(equalToConstant: heighConstant).isActive = true
+        pizza_pocketsImageView.widthAnchor.constraint(equalToConstant: widthConstant).isActive = true
         pizza_pocketsImageView.image = UIImage(named: "pizza_pockets")
         
         stackView.addArrangedSubview(pizza_pocketsImageView)
         
         //Pop_tarts Image View
         let pop_tartsImageView = UIImageView()
-        pop_tartsImageView.heightAnchor.constraint(equalToConstant: 120.0).isActive = true
-        pop_tartsImageView.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
+        pop_tartsImageView.heightAnchor.constraint(equalToConstant: heighConstant).isActive = true
+        pop_tartsImageView.widthAnchor.constraint(equalToConstant: widthConstant).isActive = true
         pop_tartsImageView.image = UIImage(named: "pop_tarts")
         
         stackView.addArrangedSubview(pop_tartsImageView)
+        
+        //Popsicle Image View
+        let popsicleImageView = UIImageView()
+        popsicleImageView.heightAnchor.constraint(equalToConstant: heighConstant).isActive = true
+        popsicleImageView.widthAnchor.constraint(equalToConstant: widthConstant).isActive = true
+        popsicleImageView.image = UIImage(named: "popsicle")
+        
+        stackView.addArrangedSubview(popsicleImageView)
+        
+        //Ramen Image View
+        let ramenImageView = UIImageView()
+        ramenImageView.heightAnchor.constraint(equalToConstant: heighConstant).isActive = true
+        ramenImageView.widthAnchor.constraint(equalToConstant: widthConstant).isActive = true
+        ramenImageView.image = UIImage(named: "ramen")
+        
+        stackView.addArrangedSubview(ramenImageView)
         
         
         stackView.heightAnchor.constraint(equalToConstant: 140).isActive = true
