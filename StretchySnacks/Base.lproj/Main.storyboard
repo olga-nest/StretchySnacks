@@ -52,6 +52,7 @@
                     </view>
                     <connections>
                         <outlet property="navbarHeightConstraint" destination="iSU-Dm-2cs" id="Bvx-vJ-dtU"/>
+                        <outlet property="navigationBar" destination="L3A-Xl-Boe" id="5xz-tM-xfz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
