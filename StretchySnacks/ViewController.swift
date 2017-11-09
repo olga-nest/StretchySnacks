@@ -115,17 +115,13 @@ class ViewController: UIViewController {
         
         stackView.addArrangedSubview(ramenImageView)
         
-        
-        stackView.heightAnchor.constraint(equalToConstant: 140).isActive = true
-        stackView.widthAnchor.constraint(equalToConstant: self.navigationBar.frame.width).isActive = true
-  //      stackView.centerXAnchor.constraint(equalTo: self.navigationBar.centerXAnchor).isActive = true
- //    stackView.centerYAnchor.constraint(equalTo: self.navigationBar.centerYAnchor).isActive = true
-        
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         self.navigationBar.addSubview(stackView)
-   //     stackView.isHidden = true
         
+        stackView.topAnchor.constraint(equalTo: self.navigationBar.topAnchor, constant: 64).isActive = true
+        stackView.heightAnchor.constraint(equalToConstant: 140).isActive = true
+        stackView.widthAnchor.constraint(equalToConstant: self.navigationBar.frame.width).isActive = true
        
     }
 
