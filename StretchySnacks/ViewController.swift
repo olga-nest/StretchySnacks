@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     //MARK: Properties
     @IBOutlet weak var navbarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var navigationBar: UIView!
+    @IBOutlet weak var addButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -23,6 +24,11 @@ class ViewController: UIViewController {
     //MARK: Actions
     @IBAction func addButtonPressed(_ sender: UIButton) {
         print("Plus icon pressed")
+        
+        UIView.animate(withDuration: 1, animations: ({
+            self.addButton.transform = self.addButton.transform.rotated(by: CGFloat(Double.pi / 4))
+        }))
+        
         navBarSpringAnimation()
     }
     
