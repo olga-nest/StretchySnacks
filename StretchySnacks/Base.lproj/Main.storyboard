@@ -51,6 +51,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="f7p-7O-Zjg" id="DHT-pz-RT1"/>
                         <outlet property="navbarHeightConstraint" destination="iSU-Dm-2cs" id="Bvx-vJ-dtU"/>
                         <outlet property="navigationBar" destination="L3A-Xl-Boe" id="5xz-tM-xfz"/>
                     </connections>
