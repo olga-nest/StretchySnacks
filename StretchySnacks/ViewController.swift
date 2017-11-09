@@ -67,10 +67,10 @@ class ViewController: UIViewController {
     //MARK: Stack view
     
     func setupStackView() {
-        stackView.axis  = UILayoutConstraintAxis.horizontal
-        stackView.distribution  = UIStackViewDistribution.equalSpacing
+        stackView.axis = UILayoutConstraintAxis.horizontal
+        stackView.distribution = UIStackViewDistribution.equalSpacing
         stackView.alignment = UIStackViewAlignment.center
-        stackView.spacing   = 8.0
+        stackView.spacing = 5.0
         
         let heighConstant = 100.0 as CGFloat
         let widthConstant = 70.0 as CGFloat
@@ -121,8 +121,8 @@ class ViewController: UIViewController {
         
         stackView.topAnchor.constraint(equalTo: self.navigationBar.topAnchor, constant: 64).isActive = true
         stackView.heightAnchor.constraint(equalToConstant: 140).isActive = true
-        stackView.widthAnchor.constraint(equalToConstant: self.navigationBar.frame.width).isActive = true
-       
+        stackView.leadingAnchor.constraint(equalTo: self.navigationBar.leadingAnchor, constant: 10).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: self.navigationBar.trailingAnchor, constant: -10).isActive = true
     }
 
 }
