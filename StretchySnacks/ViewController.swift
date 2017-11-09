@@ -16,11 +16,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     
     var navBarIsOpen: Bool = false
+    var stackView = UIStackView()
     
-    
+    //MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupStackView()
     }
 
     //MARK: Actions
@@ -38,14 +39,13 @@ class ViewController: UIViewController {
             addButtonRotation()
             navBarSpringAnimation(navBarIsOpen: navBarIsOpen)
             navBarIsOpen = true
+            stackView.isHidden = false
         default:
             addButtonRotation()
             navBarSpringAnimation(navBarIsOpen: navBarIsOpen)
             navBarIsOpen = false
+            stackView.isHidden = true
         }
-        
-        
-        
     }
     
     func navBarSpringAnimation(navBarIsOpen: Bool) {
@@ -61,8 +61,52 @@ class ViewController: UIViewController {
         } else {
             animation(height: 64)
         }
+    }
+    
+    //MARK: Stack view
+    
+    func setupStackView() {
+        stackView.axis  = UILayoutConstraintAxis.horizontal
+        stackView.distribution  = UIStackViewDistribution.equalSpacing
+        stackView.alignment = UIStackViewAlignment.center
+        stackView.spacing   = 8.0
         
+        //Oreo Image View
+        let oreoImageView = UIImageView()
+        oreoImageView.heightAnchor.constraint(equalToConstant: 120.0).isActive = true
+        oreoImageView.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
+        oreoImageView.image = UIImage(named: "oreos")
+        
+        stackView.addArrangedSubview(oreoImageView)
+        
+        //Pizza_pockets Image View
+        let pizza_pocketsImageView = UIImageView()
+        pizza_pocketsImageView.heightAnchor.constraint(equalToConstant: 120.0).isActive = true
+        pizza_pocketsImageView.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
+        pizza_pocketsImageView.image = UIImage(named: "pizza_pockets")
+        
+        stackView.addArrangedSubview(pizza_pocketsImageView)
+        
+        //Pop_tarts Image View
+        let pop_tartsImageView = UIImageView()
+        pop_tartsImageView.heightAnchor.constraint(equalToConstant: 120.0).isActive = true
+        pop_tartsImageView.widthAnchor.constraint(equalToConstant: 80.0).isActive = true
+        pop_tartsImageView.image = UIImage(named: "pop_tarts")
+        
+        stackView.addArrangedSubview(pop_tartsImageView)
+        
+        
+        stackView.heightAnchor.constraint(equalToConstant: 140).isActive = true
+        stackView.widthAnchor.constraint(equalToConstant: self.navigationBar.frame.width).isActive = true
+  //      stackView.centerXAnchor.constraint(equalTo: self.navigationBar.centerXAnchor).isActive = true
+ //    stackView.centerYAnchor.constraint(equalTo: self.navigationBar.centerYAnchor).isActive = true
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.navigationBar.addSubview(stackView)
+   //     stackView.isHidden = true
+        
+       
     }
 
 }
-
