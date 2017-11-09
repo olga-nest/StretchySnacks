@@ -28,13 +28,16 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <state key="normal" title="＋"/>
+                                        <connections>
+                                            <action selector="addButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IXV-bG-tte"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="f7p-7O-Zjg" secondAttribute="bottom" constant="8" id="XMU-vi-iRo"/>
                                     <constraint firstAttribute="trailing" secondItem="f7p-7O-Zjg" secondAttribute="trailing" constant="8" id="iRy-it-sN5"/>
                                     <constraint firstAttribute="height" constant="64" id="iSU-Dm-2cs"/>
+                                    <constraint firstItem="f7p-7O-Zjg" firstAttribute="top" secondItem="L3A-Xl-Boe" secondAttribute="top" constant="26" id="wcy-aV-UzR"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -47,6 +50,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="navbarHeightConstraint" destination="iSU-Dm-2cs" id="Bvx-vJ-dtU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
