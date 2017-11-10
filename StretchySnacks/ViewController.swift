@@ -190,6 +190,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         default:
             snacks.append("Crazy Icecream")
         }
-      tableView.reloadData()
+        let indexPath = IndexPath(row: snacks.count - 1, section: 0)
+        tableView.insertRows(at: [indexPath], with: .fade)
+
     }
 }
