@@ -69,20 +69,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func navBarSpringAnimation(navBarIsOpen: Bool) {
         if navBarIsOpen == false {
-            UIView.animate(withDuration: 5, delay: 0, usingSpringWithDamping: 0.25, initialSpringVelocity: 5, options: [], animations: {
+            UIView.animate(withDuration: 3, delay: 0, usingSpringWithDamping: 0.25, initialSpringVelocity: 5, options: [], animations: {
                 self.navbarHeightConstraint.constant = 200
                 self.snacksLabelY.isActive = false
                 self.snacksLabelY = self.snacksLabel.centerYAnchor.constraint(equalTo: self.navigationBar.centerYAnchor, constant: -40)
                 self.snacksLabelY.isActive = true
                 self.snacksLabel.text = "Add a snack"
+                self.navigationBar.layoutIfNeeded()
             }
             )} else {
-            UIView.animate(withDuration: 5, delay: 0, usingSpringWithDamping: 0.25, initialSpringVelocity: 5, options: [], animations: {
+            UIView.animate(withDuration: 3, delay: 0, usingSpringWithDamping: 0.25, initialSpringVelocity: 5, options: [], animations: {
                 self.navbarHeightConstraint.constant = 64
                 self.snacksLabelY.isActive = false
                 self.snacksLabelY = self.snacksLabel.centerYAnchor.constraint(equalTo: self.navigationBar.centerYAnchor, constant: 0)
                 self.snacksLabelY.isActive = true
                 self.snacksLabel.text = "SNACKS"
+                self.navigationBar.layoutIfNeeded()
             }
             )}
     }
