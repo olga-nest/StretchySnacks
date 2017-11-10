@@ -19,6 +19,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var navBarIsOpen: Bool = false
     var stackView = UIStackView()
     var snacks = [String]()
+    var snacksLabel = UILabel()
+    var snacksLabelY = NSLayoutConstraint()
+    
     
     let oreoImageView = UIImageView()
     let pizza_pocketsImageView = UIImageView()
@@ -32,8 +35,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         setupStackView()
+        setupNavbarTitle()
         stackView.isHidden = true
         addGuestureRecognizers()
+        
+        snacksLabelY = snacksLabel.centerYAnchor.constraint(equalTo: navigationBar.centerYAnchor, constant: 0)
+        snacksLabelY.isActive = true
     }
 
     //MARK: Actions
@@ -41,7 +48,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print("Plus icon pressed")
         
         func addButtonRotation() {
-            UIView.animate(withDuration: 1, animations: ({
+            UIView.animate(withDuration: 0.5, animations: ({
                 self.addButton.transform = self.addButton.transform.rotated(by: CGFloat(Double.pi / 4))
             }))
         }
@@ -62,10 +69,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func navBarSpringAnimation(navBarIsOpen: Bool) {
         if navBarIsOpen == false {
-            navbarHeightConstraint.constant = 200
-        } else {
-            navbarHeightConstraint.constant = 64
-        }
+            UIView.animate(withDuration: 3, delay: 0, usingSpringWithDamping: 0.25, initialSpringVelocity: 5, options: [], animations: {
+                self.navbarHeightConstraint.constant = 200
+                self.snacksLabelY.isActive = false
+                self.snacksLabelY = self.snacksLabel.centerYAnchor.constraint(equalTo: self.navigationBar.centerYAnchor, constant: -40)
+                self.snacksLabelY.isActive = true
+                self.snacksLabel.text = "Add a snack"
+                self.navigationBar.layoutIfNeeded()
+            }
+            )} else {
+            UIView.animate(withDuration: 3, delay: 0, usingSpringWithDamping: 0.25, initialSpringVelocity: 5, options: [], animations: {
+                self.navbarHeightConstraint.constant = 64
+                self.snacksLabelY.isActive = false
+                self.snacksLabelY = self.snacksLabel.centerYAnchor.constraint(equalTo: self.navigationBar.centerYAnchor, constant: 0)
+                self.snacksLabelY.isActive = true
+                self.snacksLabel.text = "SNACKS"
+                self.navigationBar.layoutIfNeeded()
+            }
+            )}
     }
     
     //MARK: Stack view
@@ -120,18 +141,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         ramenImageView.isUserInteractionEnabled = true
         
         stackView.addArrangedSubview(ramenImageView)
-        
-        //Snacks label
-        let snacksLabel = UILabel()
-        snacksLabel.translatesAutoresizingMaskIntoConstraints = false
-        snacksLabel.text = "SNACKS"
-        snacksLabel.textAlignment = .center
-        
-        navigationBar.addSubview(snacksLabel)
-        
-        snacksLabel.centerXAnchor.constraint(equalTo: navigationBar.centerXAnchor).isActive = true
-        snacksLabel.centerYAnchor.constraint(equalTo: navigationBar.centerYAnchor).isActive = true
-        
+     
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         self.navigationBar.addSubview(stackView)
@@ -141,6 +151,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         stackView.leadingAnchor.constraint(equalTo: self.navigationBar.leadingAnchor, constant: 10).isActive = true
         stackView.trailingAnchor.constraint(equalTo: self.navigationBar.trailingAnchor, constant: -10).isActive = true
         
+    }
+    
+    func setupNavbarTitle() {
+        //Snacks label
+        snacksLabel = UILabel()
+        snacksLabel.translatesAutoresizingMaskIntoConstraints = false
+        snacksLabel.text = "SNACKS"
+        snacksLabel.textAlignment = .center
+        
+        navigationBar.addSubview(snacksLabel)
+        
+        snacksLabel.centerXAnchor.constraint(equalTo: navigationBar.centerXAnchor).isActive = true
+        
+//        snacksLabel.centerYAnchor.constraint(equalTo: navigationBar.centerYAnchor).isActive = true
     }
     
     //MARK: Table view
