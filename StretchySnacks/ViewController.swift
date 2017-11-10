@@ -8,21 +8,32 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     //MARK: Properties
     @IBOutlet weak var navbarHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var navigationBar: UIView!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
     var navBarIsOpen: Bool = false
     var stackView = UIStackView()
+    var snacks = [String]()
+    
+    let oreoImageView = UIImageView()
+    let pizza_pocketsImageView = UIImageView()
+    let pop_tartsImageView = UIImageView()
+    let popsicleImageView = UIImageView()
+    let ramenImageView = UIImageView()
     
     //MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
         setupStackView()
         stackView.isHidden = true
+        addGuestureRecognizers()
     }
 
     //MARK: Actions
@@ -50,17 +61,10 @@ class ViewController: UIViewController {
     }
     
     func navBarSpringAnimation(navBarIsOpen: Bool) {
-        
-        func animation(height: Int) {
-            UIView.animate(withDuration: 3, delay: 0, usingSpringWithDamping: 0.25, initialSpringVelocity: 5, options: [], animations: {
-                // Values for end state of animation
-                self.navigationBar.frame = CGRect(x: self.navigationBar.frame.minX, y: self.navigationBar.frame.minY, width: self.navigationBar.frame.width, height: CGFloat(height))
-            })
-        }
         if navBarIsOpen == false {
-            animation(height: 200)
+            navbarHeightConstraint.constant = 200
         } else {
-            animation(height: 64)
+            navbarHeightConstraint.constant = 64
         }
     }
     
@@ -76,42 +80,44 @@ class ViewController: UIViewController {
         let widthConstant = 70.0 as CGFloat
         
         //Oreo Image View
-        let oreoImageView = UIImageView()
         oreoImageView.heightAnchor.constraint(equalToConstant: heighConstant).isActive = true
         oreoImageView.widthAnchor.constraint(equalToConstant: widthConstant).isActive = true
         oreoImageView.image = UIImage(named: "oreos")
+        oreoImageView.isUserInteractionEnabled = true
         
         stackView.addArrangedSubview(oreoImageView)
         
         //Pizza_pockets Image View
-        let pizza_pocketsImageView = UIImageView()
         pizza_pocketsImageView.heightAnchor.constraint(equalToConstant: heighConstant).isActive = true
         pizza_pocketsImageView.widthAnchor.constraint(equalToConstant: widthConstant).isActive = true
         pizza_pocketsImageView.image = UIImage(named: "pizza_pockets")
+        pizza_pocketsImageView.isUserInteractionEnabled = true
         
         stackView.addArrangedSubview(pizza_pocketsImageView)
         
         //Pop_tarts Image View
-        let pop_tartsImageView = UIImageView()
         pop_tartsImageView.heightAnchor.constraint(equalToConstant: heighConstant).isActive = true
         pop_tartsImageView.widthAnchor.constraint(equalToConstant: widthConstant).isActive = true
         pop_tartsImageView.image = UIImage(named: "pop_tarts")
+        pop_tartsImageView.isUserInteractionEnabled = true
         
         stackView.addArrangedSubview(pop_tartsImageView)
         
         //Popsicle Image View
-        let popsicleImageView = UIImageView()
+        //P.S. You'll see pizza pockets instead;)
         popsicleImageView.heightAnchor.constraint(equalToConstant: heighConstant).isActive = true
         popsicleImageView.widthAnchor.constraint(equalToConstant: widthConstant).isActive = true
         popsicleImageView.image = UIImage(named: "pizza_pockets")
+        popsicleImageView.isUserInteractionEnabled = true
         
         stackView.addArrangedSubview(popsicleImageView)
         
         //Ramen Image View
-        let ramenImageView = UIImageView()
+        
         ramenImageView.heightAnchor.constraint(equalToConstant: heighConstant).isActive = true
         ramenImageView.widthAnchor.constraint(equalToConstant: widthConstant).isActive = true
         ramenImageView.image = UIImage(named: "ramen")
+        ramenImageView.isUserInteractionEnabled = true
         
         stackView.addArrangedSubview(ramenImageView)
         
@@ -137,4 +143,53 @@ class ViewController: UIViewController {
         
     }
     
+    //MARK: Table view
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       return snacks.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "snackCell", for: indexPath)
+        
+        cell.textLabel?.text = snacks[indexPath.row]
+        
+        return cell
+    }
+    
+    //MARK: Guestures
+    func addGuestureRecognizers() {
+        let oreoTapGuestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(tapGuestureRecognizer:)))
+        oreoImageView.addGestureRecognizer(oreoTapGuestureRecognizer)
+        
+        let pizzaTapGuestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(tapGuestureRecognizer:)))
+        pizza_pocketsImageView.addGestureRecognizer(pizzaTapGuestureRecognizer)
+        
+        let popTapGuestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(tapGuestureRecognizer:)))
+        pop_tartsImageView.addGestureRecognizer(popTapGuestureRecognizer)
+        
+        let popsicleTapGuestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(tapGuestureRecognizer:)))
+        popsicleImageView.addGestureRecognizer(popsicleTapGuestureRecognizer)
+        
+        let ramenTapGuestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(tapGuestureRecognizer:)))
+        ramenImageView.addGestureRecognizer(ramenTapGuestureRecognizer)
+        
+    }
+    
+    @objc func handleTap(tapGuestureRecognizer: UITapGestureRecognizer) {
+        switch tapGuestureRecognizer.view as! UIImageView {
+        case oreoImageView:
+            snacks.append("Oreo")
+        case pizza_pocketsImageView:
+            snacks.append("Pizza pockets")
+        case pop_tartsImageView:
+            snacks.append("Pop tarts")
+        case popsicleImageView:
+            snacks.append("Popsicle. Yes this is popsicle")
+        case ramenImageView:
+            snacks.append("Ramen")
+        default:
+            snacks.append("Crazy Icecream")
+        }
+      tableView.reloadData()
+    }
 }
