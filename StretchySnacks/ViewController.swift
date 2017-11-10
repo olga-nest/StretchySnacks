@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     //MARK: Properties
     @IBOutlet weak var navbarHeightConstraint: NSLayoutConstraint!
@@ -50,17 +50,10 @@ class ViewController: UIViewController {
     }
     
     func navBarSpringAnimation(navBarIsOpen: Bool) {
-        
-        func animation(height: Int) {
-            UIView.animate(withDuration: 3, delay: 0, usingSpringWithDamping: 0.25, initialSpringVelocity: 5, options: [], animations: {
-                // Values for end state of animation
-                self.navigationBar.frame = CGRect(x: self.navigationBar.frame.minX, y: self.navigationBar.frame.minY, width: self.navigationBar.frame.width, height: CGFloat(height))
-            })
-        }
         if navBarIsOpen == false {
-            animation(height: 200)
+            navbarHeightConstraint.constant = 200
         } else {
-            animation(height: 64)
+            navbarHeightConstraint.constant = 64
         }
     }
     
@@ -134,6 +127,18 @@ class ViewController: UIViewController {
         stackView.heightAnchor.constraint(equalToConstant: 140).isActive = true
         stackView.leadingAnchor.constraint(equalTo: self.navigationBar.leadingAnchor, constant: 10).isActive = true
         stackView.trailingAnchor.constraint(equalTo: self.navigationBar.trailingAnchor, constant: -10).isActive = true
+        
+    }
+    
+    //MARK: Table view
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "snackCell", for: indexPath)
+        
+        return cell
         
     }
     
