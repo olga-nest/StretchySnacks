@@ -32,6 +32,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         setupStackView()
+        setupNavbarTitle()
         stackView.isHidden = true
         addGuestureRecognizers()
     }
@@ -120,7 +121,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         ramenImageView.isUserInteractionEnabled = true
         
         stackView.addArrangedSubview(ramenImageView)
+     
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
+        self.navigationBar.addSubview(stackView)
+        
+        stackView.topAnchor.constraint(equalTo: self.navigationBar.topAnchor, constant: 64).isActive = true
+        stackView.heightAnchor.constraint(equalToConstant: 140).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: self.navigationBar.leadingAnchor, constant: 10).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: self.navigationBar.trailingAnchor, constant: -10).isActive = true
+        
+    }
+    
+    func setupNavbarTitle() {
         //Snacks label
         let snacksLabel = UILabel()
         snacksLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -131,16 +144,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         snacksLabel.centerXAnchor.constraint(equalTo: navigationBar.centerXAnchor).isActive = true
         snacksLabel.centerYAnchor.constraint(equalTo: navigationBar.centerYAnchor).isActive = true
-        
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.navigationBar.addSubview(stackView)
-        
-        stackView.topAnchor.constraint(equalTo: self.navigationBar.topAnchor, constant: 64).isActive = true
-        stackView.heightAnchor.constraint(equalToConstant: 140).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: self.navigationBar.leadingAnchor, constant: 10).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: self.navigationBar.trailingAnchor, constant: -10).isActive = true
-        
     }
     
     //MARK: Table view
